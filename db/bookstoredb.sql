@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v11.11 (64 bit)
-MySQL - 5.6.26 : Database - bookstoredb
+MySQL - 5.5.5-10.1.9-MariaDB : Database - bookstoredb
 *********************************************************************
 */
 
@@ -180,23 +180,6 @@ CREATE TABLE `produce` (
 
 /*Data for the table `produce` */
 
-/*Table structure for table `tabbook` */
-
-DROP TABLE IF EXISTS `tabbook`;
-
-CREATE TABLE `tabbook` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_tag` int(10) unsigned NOT NULL,
-  `id_book` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_book` (`id_book`),
-  KEY `id_tag` (`id_tag`),
-  CONSTRAINT `tabbook_ibfk_1` FOREIGN KEY (`id_book`) REFERENCES `book` (`id`),
-  CONSTRAINT `tabbook_ibfk_2` FOREIGN KEY (`id_tag`) REFERENCES `tag` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `tabbook` */
-
 /*Table structure for table `tag` */
 
 DROP TABLE IF EXISTS `tag`;
@@ -209,6 +192,23 @@ CREATE TABLE `tag` (
 
 /*Data for the table `tag` */
 
+/*Table structure for table `tagbook` */
+
+DROP TABLE IF EXISTS `tagbook`;
+
+CREATE TABLE `tagbook` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_tag` int(10) unsigned NOT NULL,
+  `id_book` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_book` (`id_book`),
+  KEY `id_tag` (`id_tag`),
+  CONSTRAINT `tagbook_ibfk_1` FOREIGN KEY (`id_book`) REFERENCES `book` (`id`),
+  CONSTRAINT `tagbook_ibfk_2` FOREIGN KEY (`id_tag`) REFERENCES `tag` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `tagbook` */
+
 /*Table structure for table `user` */
 
 DROP TABLE IF EXISTS `user`;
@@ -220,13 +220,13 @@ CREATE TABLE `user` (
   `salt` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `useragent` varbinary(255) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `born` date NOT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `born` date DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `accessed` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
-  `loginnumber` int(10) unsigned NOT NULL,
+  `loginnumber` int(10) unsigned DEFAULT '0',
   `acctive` tinyint(1) DEFAULT '0',
   `admin` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
