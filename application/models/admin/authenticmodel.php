@@ -37,8 +37,10 @@ class Authenticmodel extends CI_Model {
 	
 	public function login($email = "", $password = "")
 	{
-		return count($this->db->from("user")
+		$row = $this->db->from("user")
 							  ->where(array("email" => $email, "password" => $password))
-							  ->get()->row_array()) ? TRUE : FALSE;
+							  ->get()->row_array();
+		print_r($row);
+		return count($row) > 0 && $row['admin'] == "1" ? TRUE : FALSE;
 	}
 }
