@@ -2,7 +2,7 @@
 SQLyog Ultimate v11.11 (64 bit)
 MySQL - 5.5.5-10.1.9-MariaDB : Database - bookstoredb
 *********************************************************************
-*/
+*//*Author: NgocHanh*/
 
 /*!40101 SET NAMES utf8 */;
 
