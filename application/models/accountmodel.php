@@ -13,7 +13,7 @@ class Accountmodel extends CI_Model {
 		{
 			return array(
 				"type" => "Successful",
-				"msg" => " Signin is successful!"
+				"msg" => " Signup is successful!"
 			);
 		}
 	}
